@@ -23,7 +23,7 @@ categories:
 # 常用插件解析
 ## HtmlWebpackPlugin
     功能：自动创建一个html文件，该文件包含webpack打包生成的bundles。因为bundle会带上版本号，所以这种自动生成就会比较便利。
-    原理：在compiler的emit钩子中对html的内容进行修改（将相应的assets加在对应的标签里并插入进html中相应的位置（head/body））,并通过html-minifier压缩后生成要输出的html内容等一些操作，最后通过修改compilation.assets来生成html文件。
+    原理：在compiler的emit钩子中对html的内容进行修改（将相应的assets加在对应的标签里并插入进html中相应的位置（head/body））,并通过html-minifier压缩后生成要输出的html内容等一些操作，最后通过修改compilation.assets来生成html文件。（通过子编译器进行html的编译部分见webpack-loader部分）
     配置：chunks
         excludeChunks  更多配置可看官网
     扩展：该插件还提供了（tapable）
