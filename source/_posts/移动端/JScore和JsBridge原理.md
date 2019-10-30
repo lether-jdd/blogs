@@ -37,3 +37,6 @@ categories:
   第五步：Native如何调用JS
   第六步：H5中api方法的注册以及格式
   ```
+
+##JSCore
+https://tech.meituan.com/2018/08/23/deep-understanding-of-jscore.html  后面有附带桥的实现

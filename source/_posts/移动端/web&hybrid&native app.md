@@ -19,3 +19,6 @@ categories:
     （4）设计受限制诸多
     （5）体验较差
 更多地看https://www.uisdc.com/web-hybrid-native-app
+2 hybrid   混合
+  在native中嵌入h5
+3 native

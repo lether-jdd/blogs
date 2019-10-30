@@ -53,3 +53,4 @@ Object.defineProperty(exports, "__esModule", {
     是因为transform-runtime默认使用polyfill，导致引入了该文件
 3.4 为什么会引入错误代码
     配置为es2015 的时候才引入  present-dev的时候没有引入。为什么？
+    
