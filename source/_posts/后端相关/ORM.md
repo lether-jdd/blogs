@@ -4,7 +4,7 @@ title: ORM
 date: 2019-08-23 21:13:51
 tags:
 categories: 
-- 构建&其他
+- 后端
 ---
 ORM (object relationship mapping)就是通过实例对象的语法，完成关系型数据库的操作的技术，是"对象-关系映射"（Object/Relational Mapping） 的缩写。
 数据库的表（table） --> 类（class）

@@ -1,3 +1,12 @@
+---
+title: 问题记录（No such file or directory ）
+date: 2019-08-23 21:13:51
+tags:
+- npm 
+categories: 
+- 问题记录
+---
+
 npm全局安装reverse-sourcemap（为了追查压缩后的文件）
 可反解打包后的文件
 
