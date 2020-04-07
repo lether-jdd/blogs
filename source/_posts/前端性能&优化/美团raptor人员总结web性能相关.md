@@ -53,4 +53,4 @@ Navigation Timing API 提供了文档构建过程中的多数性能指标，对�
   计算模型中将首屏时间定义为浏览器视窗范围内的 DOM 达到稳定状态的时间。为了监测这个稳定状态，核心算法主要使用接口：MutationObserver。MutationObserver 实例能够监听 DOM 变化并执行回调。当一定时间内没有再监听到首屏内 DOM 变化时，即可得出结果并停止监听。
 
 # 5 web性能问题排查
-￼![](/images/drawio.svg)
+￼![](/images/drawio.svg) 
