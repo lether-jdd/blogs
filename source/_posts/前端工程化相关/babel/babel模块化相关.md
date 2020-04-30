@@ -8,7 +8,7 @@ tags:
 categories: 
 - 构建&其他
 ---
-1 babel将es6的模块化语言（import，export）转化成commonjs的模块化方式
+# 1 babel将es6的模块化语言（import，export）转化成commonjs的模块化方式
 还会给exports上加上__esModule  表示由 es6 转换来的 commonjs 输出
 ```bash
 Object.defineProperty(exports, "__esModule", {
@@ -19,7 +19,7 @@ Object.defineProperty(exports, "__esModule", {
 
 为什么转化后（0,fn()）这样执行是因为这样可以挂载在全局
 
-2 webpack
+# 2 webpack
 webpack在对模块进行构建时会给模块放在函数里面，函数的传参视情况而定；
 对于函数的参数现在看来是在 /lib/module  下的这段代码中看是用哪个export
 ```bash
@@ -46,39 +46,26 @@ function(module, __webpack_exports__, __webpack_require__)
 
 function(module, exports, __webpack_require__)
 
-3 transform-runtime | babel-runtime | babel-polyfill
+# 3 transform-runtime | babel-runtime | babel-polyfill
+Babel 是处于构建时（也就是传统Java等语言的编译时），转译出来的结果在默认情况下并不包括 ES6 对运行时的扩展，例如，builtins（内建，包括 Promise、Set、Map 等）、内建类型上的原型扩展（如 ES6 对 Array、Object、String 等内建类型原型上的扩展）以及Regenerator（用于generators / yield）等都不包括在内。
+- core-js标准库
+  它提供了 ES5、ES6 的 polyfills，包括 promises 、symbols、collections、iterators、typed arrays、ECMAScript 7+ proposals、setImmediate 等等。
+- regenerator 运行时库
+  用来实现 ES6/ES7 中 generators、yield、async 及 await 等相关的 polyfills
+- babel-runtime
+  由 core-js 与 regenerator-runtime 库组成，除了做简单的合并与映射外，并没有做任何额外的加工。
+  在使用时，必须在每一处需要用到 Promise 的 module 里，手工引入 promise 模块
+- babel-plugin-transform-runtime
+  这个插件让 Babel 发现代码中使用到 Symbol、Promise、Map 等新类型时，自动且按需进行 polyfill，
+  如果正在开发一个库或者工具的时候建议用这个插件，因为没有全局变量和 prototype 污染。不适合应用中
+  没有全局污染：就是不会在global中挂载；
+  没有prototype污染：就是不会重写内建类型的prototype
+  怎么实现没有污染：通过引入替换
+- babel-polyfill:
+  Polyfill features that are missing in your target environment
+  一般用在一个应用中，而不是库或者工具中。
+  babel-node会自动会自动加载这个库。
+  它会以全局变量的形式 polyfill Map、Set、Promise 之类的类型，也会以类似 Array.prototype.includes() 的方式去注入污染原型
+  如果你的浏览器已经支持 Promise，它会优先使用 native 的 Promise，如果没有的话，则会采用 polyfill 的版本
 
 
-Babel 只是转换 syntax 层语法,所以需要 @babel/polyfill 来处理API兼容,又因为 polyfill 体积太大，所以通过 preset的 useBuiltIns 来实现按需加载,再接着为了满足 npm 组件开发的需要 出现了 @babel/runtime 来做隔离（因为会污染）
-
-
-在转换 ES2015 语法为 ECMAScript 5 的语法时，babel 会需要一些辅助函数，例如 _extend。babel 默认会将这些辅助函数内联到每一个 js 文件里，这样文件多的时候，项目就会很大。
-
-所以 babel 提供了 transform-runtime 来将这些辅助函数“搬”到一个单独的模块 babel-runtime 中，这样做能减小项目文件的大小。
-
-在webpack中，babel-plugin-transform-runtime 实际上是依赖babel-runtime
-transform-runtime    默认引入了polyfill
-babel-runtime和 babel-plugin-transform-runtime的区别是，相当一前者是手动挡而后者是自动挡，每当要转译一个api时都要手动加上require('babel-runtime')，
-
-built-ins
-
-
-Babel 把 Javascript 语法 分为 syntax 和 api
-api 指那些我们可以通过 函数重新覆盖的语法
-
-4  引入transform-runtime插件之后exports * 就报错
-   1 可以注释掉Comment this line 'defineProperty: "object/define-property"' in babel-plugin-transform-runtime/lib/definitions.js 
-   2 配置["transform-runtime", {
-      "polyfill": false
-    }]
-  3  "presets": [
-        { "plugins": [ "transform-runtime" ] },
-        {
-            "passPerPreset": false,
-            "presets": [ "es2015", "stage-1" ]
-        }
-    ]
-
-5 为什么
-
-我们的模块已经被转成了cmd的形式，可是webpack还是按照es6的模式在处理

@@ -39,6 +39,7 @@ store.dispatch('increment')
 - 扩展：是不是可以把项目中的常量作为插件注入到vue中，这样就不用每个文件都引用一下了
 > store模式简单实现 
 > 参考：https://juejin.im/post/5cd50849f265da03a54c3877
+> vue 插件编写（提供install方法）
 ```bash
 注意：关于异步的实现还未实现
 const FormStore = function(form, initialState = {}) {
