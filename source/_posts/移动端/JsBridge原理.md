@@ -6,7 +6,7 @@ categories:
 - 移动端
 ---
 # h5与native之间进行通信
-##js调用ios
+## js调用ios
   目前兼顾兼容性、比较成熟的方案还是通过拦截URL的方式。（目前的一种统一方案是:H5触发url scheme->Native捕获url scheme->原生分析,执行->原生调用h5）
   UIWebView的特性，在UIWebView内发起的所有网络请求，都可以在Native层被捕捉到。
   利用这一特性，就可以在UIWebView内发起一个自定义的网络请求，一般格式：jsbridge://method?参数1=value1&参数2=value2
