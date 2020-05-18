@@ -32,7 +32,7 @@ module.exports = function (source) {
 }
 
 ```
-### node环境中运行
+### html-layout-loader
 因为是在服务器端测试的所以配置的时候设置了target:node,不然打包的时候require核心代码的时候的输出会报错   
 还要使用raw-loader将文件作为字符串导入，require的时候obj.default为字符串,正常的时候require为模块的export的值。
 配置如下：

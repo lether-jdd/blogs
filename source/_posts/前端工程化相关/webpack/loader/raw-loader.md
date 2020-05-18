@@ -1,0 +1,1 @@
+A loader for webpack that lets you import files as a string.
