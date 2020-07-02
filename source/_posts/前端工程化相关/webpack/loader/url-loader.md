@@ -1,1 +1,0 @@
-A loader for webpack which transforms files into base64 URIs.
