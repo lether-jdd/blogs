@@ -1,0 +1,3 @@
+
+也就是将Vue在客户端把标签渲染成HTML的工作放在服务端完成，然后再把html直接返回给客户端
+服务器端渲染只支持beforeCreate和created两个钩子

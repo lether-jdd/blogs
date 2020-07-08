@@ -15,8 +15,9 @@ jsonp就是为了直接执行，执行的逻辑就是模块替换的逻辑（这
 使用内存文件系统去替换有修改的内容实现局部刷新
 在决定更新模块后，检查模块之间的依赖关系，更新模块的同时更新模块间的依赖引用。
 最后手动module.hot.accpet来添加HMR的js模块
-# 1.4 浏览器更新加更
-hotApply  主要的过程主要是一次次冒泡，找到和当前更新模块有依赖的所有模块，查看子模块和父模块是否接收更新，如果接受，则标记为过期模块，不接受，则一直向上冒泡，�直到顶部入口点。然后针对标记的模块进行accept更新处理，并删除原有依赖，建立新的依赖。
+# 1.4 浏览器更新加更（HMR runtime）
+hotApply  主要的过程主要是一次次冒泡，找到和当前更新模块有依赖的所有模块，查看子模块和父模块是否接收更新，如果接受，则标记为过期模块，不接受，则一直向上冒泡，直到顶部入口点。然后针对标记的模块进行accept更新处理，并删除原有依赖，建立新的依赖。
+这里可以在官网中看到
 # 2 webpack-dev-middleware 是一个容器(wrapper)，它可以把 webpack 处理后的文件传递给一个服务器(server)。
 也就是dev-middleware  就是把webpack打包之后的资源输出到内存
 文件相关的操作都抽离到webpack-dev-middleware库了，主要是本地文件的编译和输出以及监听
@@ -24,6 +25,7 @@ hotApply  主要的过程主要是一次次冒泡，找到和当前更新模块�
 # 3 webpack-hot-middleware
 Webpack-hot-middleware 插件的作用就是提供浏览器和 Webpack 服务器之间的通信机制、且在浏览器端接收 Webpack 服务器端的更新变化。
 如果你使用了 webpack-dev-middleware 而没有使用 webpack-dev-server，请使用 webpack-hot-middleware package 包，以在你的自定义服务或应用程序上启用 HMR。
+这个应该是没有用socket
 
 
 问题

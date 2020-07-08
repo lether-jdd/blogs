@@ -1,0 +1,2 @@
+1  关于setTimeOut和setTimeInterval
+有专门的计时线程来计时将setTimeout和interval来推入事件队列
