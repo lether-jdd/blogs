@@ -1,0 +1,3 @@
+1 Vdom
+JS的Object对象模拟DOM中的节点,然后再通过特定的render方法将其渲染成真实的DOM节点 
+dom diff 则是通过JS层面的计算，返回一个patch对象，即补丁对象，在通过特定的操作解析patch对象，完成页面的重新渲染

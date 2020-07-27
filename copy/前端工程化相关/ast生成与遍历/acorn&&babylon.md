@@ -13,3 +13,19 @@ https://www.zhihu.com/ 可以看这个
 
 
 acorn也支持插件，例如写一个支持jsx的插件
+
+
+## 1 区别
+babylon也是基于acorn的，
+babel中用的babylon
+
+## 2 怎么遍历ast
+babel中使用的是babel-traverse
+开源的有estraverse
+
+## 实践
+amd2cmd 就是使用acorn
+https://www.npmjs.com/package/amd2cmd
+
+## 番外
+escodegen 从AST生成源代码。
